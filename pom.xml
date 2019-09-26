@@ -12,6 +12,43 @@
     <description>Project for testing Nexus OSS setup</description>
     <url>https://github.com/davejoyce/nexus-oss-config-test</url>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>davejoyce</id>
+            <name>Dave Joyce</name>
+            <email>djoyce@achievementnetwork.org</email>
+            <timezone>-5</timezone>
+            <roles>
+                <role>Principal Software Engineer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>git@github.com/davejoyce/testng-ext.git</url>
+        <connection>scm:git:git://github.com/davejoyce/nexus-oss-config-test.git</connection>
+        <developerConnection>scm:git:https://github.com/davejoyce/nexus-oss-config-test.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>anet-snapshots</id>
+            <url>http://ec2-13-59-232-134.us-east-2.compute.amazonaws.com:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>anet-releases</id>
+            <url>http://ec2-13-59-232-134.us-east-2.compute.amazonaws.com:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.javaVersion>1.8</project.build.javaVersion>
@@ -33,6 +70,17 @@
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -46,13 +94,11 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
