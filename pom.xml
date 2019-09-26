@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.achievementnetwork.test</groupId>
+    <artifactId>nexus-oss-config-test</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>Nexus OSS Config Test</name>
+    <description>Project for testing Nexus OSS setup</description>
+    <url>https://github.com/davejoyce/nexus-oss-config-test</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.javaVersion>1.8</project.build.javaVersion>
+
+        <!-- Dependency versions -->
+        <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.28</slf4j.version>
+        <testng.version>7.0.0</testng.version>
+
+        <!-- Plugin versions -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-build-environment</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>${project.build.javaVersion}</version>
+                                </requireJavaVersion>
+                                <requireOS>
+                                    <family>unix</family>
+                                </requireOS>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${project.build.javaVersion}</source>
+                    <target>${project.build.javaVersion}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
