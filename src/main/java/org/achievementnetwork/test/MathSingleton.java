@@ -52,6 +52,20 @@ public class MathSingleton {
         return c;
     }
 
+    public int multiply(int a, int b) {
+        operationCounter.incrementAndGet();
+        int c = (a * b);
+        logger.debug("{} × {} = {}", a, b, c);
+        return c;
+    }
+
+    public int divide(int a, int b) {
+        operationCounter.incrementAndGet();
+        int c = (a / b);
+        logger.debug("{} ÷ {} = {}", a, b, c);
+        return c;
+    }
+
     public int operationCount() {
         return operationCounter.get();
     }
